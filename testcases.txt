@@ -1,0 +1,108 @@
+Testcase1:
+    - Description: to test whether our server runs well, delivers random jokes, 
+                   and accepts next client if the client sends correct message.
+    - ./KKJserver  5242 "/ilab/users/hk795/jk.txt"
+
+        Server				Client
+        ---------			---------
+        REG|13|Knock, knock.|
+                            REG|12|Who's there?|
+        REG|6|Anita.|
+                            REG|11|Anita, who?|
+        REG|25|Anita go to the bathroom!|
+                            REG|3|oh!|
+
+        Waiting for connection.....
+        Internet Knock-Knock Protocol Server
+        By Hsinghui Ku,	Chang Li
+
+
+        Server				Client
+        ---------			---------
+        REG|13|Knock, knock.|
+                            REG|12|Who's there?|
+        REG|6|Kenya.|
+                            REG|11|Kenya, who?|
+        REG|28|Kenya feel the love tonight?|
+                            REG|4|Aka!|
+=======================================================================
+Testcase2:
+    - Description: to test if our sevrer gets messgaes correctly given that
+                   clients sends message in random size.
+    - Scenario:
+      Following is how client sent message:
+
+        REG|13|Knock, knock.|R  
+        Connected to ilab2.cs.rutgers.edu.
+        Escape character is '^]'.
+        Internet Knock-Knock Protocol Server
+        By Hsinghui Ku, Chang Li
+
+        REG|13|Knock, knock.|R  
+        E
+        G
+        |
+        12
+        |
+        Who's there?
+        |
+        REG|6|Kenya.|REG
+        |
+        11
+        |
+        Kenya, who?
+        |
+        REG|28|Kenya feel the love tonight?|REG
+        |
+
+=======================================================================
+Testcase3:
+    - Description: to test if the Error message following the rules.
+    - Scenario:
+        1. Client : REGa|12|Who's there?| 
+           Server : ERR|M1FT|
+        2. Client : REG|a|Who's there?|
+           Server : ERR|M1FT|
+        3. Client : REG|13|Who's there?|
+           Server : ERR|M1LN|
+        4. Client : REG|10|Who's there?
+           Server : ERR|M1FT|
+        5. Client : REG|12|who's there!|
+           Server : ERR|M1CT|
+        6. Client : REG
+        7. Client : REG|5|OHHHH|
+           Server : ERR|M5CT|
+=======================================================================
+Testcase3:
+    - Description: to test if wrong argument is acceptable
+    - ./KKJserver  5555555 "/ilab/users/hk795/jk.txt"
+       Please enter a port between 5000 and 65536
+
+
+=======================================================================
+Testcase4:
+    - Description: to test if the server accept the Error messgae correctly
+    - Client input:
+
+        REG|13|Knock, knock.|ERR
+        |
+        M0CT
+        |
+
+    - Server output:
+    Server				Client
+    ---------			---------
+    REG|13|Knock, knock.|
+	        			ERR|M0CT|
+
+=======================================================================
+Testcase5:
+    - Description: to test the blank length field or message field
+    - client:
+      REG||Who's there?|
+      REG|12||
+      ->ERR|M1FT|
+
+
+
+
