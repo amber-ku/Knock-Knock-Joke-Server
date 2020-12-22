@@ -2,7 +2,7 @@
 This is Assignment3 of CS 214:System Programming, Fall 2020\
 Completed by Hsinghui Ku & Chang Li
 ## Description
-This program use C socket to implement a simple network service: a knock knock joke server. It will use the protocal desplayed below. There is an application protocol and a message format. The application protocol specifies what messages of what type are allowed when. The message format specifies how the application messages should be constructed and read/written from/to your sockets.
+This program use C socket to implement a simple network service: a knock knock joke server. It will use the protocal desplayed below. There is an application protocol and a message format. The application protocol specifies what messages of what type are allowed when. The message format specifies how the application messages should be constructed and read/written from/to the socket.
 
 > Knock, knock.\(Server\)\
 > Who's there?\(Client\)\
@@ -10,6 +10,9 @@ This program use C socket to implement a simple network service: a knock knock j
 > \<setup line\>, who?\(Client\)\
 > \<punch line\>\<punctuation\>\(Server\)\
 > \<expression of annoyance and/or disgust or surprise\>\<punctuation\>\(Client\)
+
+**This program will take the first argument that is the port number it should start on, and the second argument to this program a file that holds a joke list. The joke list is
+newline-separated setup and punch lines.**
 
 ### Error Handling
 If ever a message is sent that does not match the requirements of the protocol, the side receiving the
